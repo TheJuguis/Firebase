@@ -13,8 +13,20 @@ class MainActivity : AppCompatActivity() {
 
         val myDB= FirebaseDatabase.getInstance()
         database = myDB.reference
-        database.child("hijo").setValue("Hola mundo")
-        
+        writeNewUser("002","nombreuno","uno@gmail.com")
+
 
     }
+
+
+    fun writeNewUser(userId: String, name: String, email: String){
+        val user = User(name, email)
+        database.child("usuarios").child(userId).setValue(user)
+    }
+}
+
+class User(name: String, email: String){
+    val nombre = name
+    val correo = email
+
 }
